@@ -411,3 +411,11 @@ form.sign-in-form {
   animation: fadeIn .2s;
 }
 
+/* Fix profile image in input field */
+.input-field img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  align-self: center;
+}
+

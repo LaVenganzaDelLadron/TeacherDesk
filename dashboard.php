@@ -49,7 +49,7 @@
             </a>
 
             <!-- STUDENT -->
-            <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-500 transition">
+            <a href="#" data-page="student.php" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-500 transition">
                 <img src="img/student.svg" alt="Student" class="w-6 h-6">
                 <span>Student</span>
             </a>
@@ -58,6 +58,12 @@
             <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-500 transition">
                 <img src="img/announcement.svg" alt="Announcement" class="w-6 h-6">
                 <span>Announcement</span>
+            </a>
+
+            <!-- INTEGRITY -->
+            <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-500 transition">
+                <img src="img/warning.svg" alt="Integrity" class="w-6 h-6">
+                <span>Integrity</span>
             </a>
 
         </nav>

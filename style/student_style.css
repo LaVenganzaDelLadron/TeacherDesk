@@ -1,0 +1,43 @@
+/* Popup card style */
+.popup-card {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  max-width: 280px;
+  background-color: #1e40af; /* dark blue */
+  color: #fff;
+  padding: 15px 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  font-size: 14px;
+  font-weight: 500;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideIn 0.4s forwards;
+}
+
+/* Optional: success and error colors */
+.popup-card.success {
+  background-color: #22c55e; /* green */
+}
+.popup-card.error {
+  background-color: #ef4444; /* red */
+}
+
+/* Slide in/out animations */
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes slideOut {
+  to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}

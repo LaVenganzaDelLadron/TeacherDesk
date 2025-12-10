@@ -67,6 +67,19 @@ CREATE TABLE IF NOT EXISTS Command(
     FOREIGN KEY (student_id) REFERENCES Student(student_id)
 );
 
+CREATE TABLE IF NOT EXISTS student_score(
+    student_score_id INT AUTO_INCREMENT PRIMARY KEY,
+    student_id INT NOT NULL,
+    exam_id INT NOT NULL,
+    score INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (student_id) REFERENCES Student(student_id) ON DELETE CASCADE,
+    FOREIGN KEY (exam_id) REFERENCES Exams(exam_id) ON DELETE CASCADE,
+    UNIQUE(student_id, exam_id)  -- Ensures a student can have only one score per exam
+);
+
+
 --FUNCTIONS HERE--
 
 DELIMITER $$
@@ -145,6 +158,42 @@ BEGIN
         VALUES(p_username, p_email, NULL, 'google');
     END IF;
 END$$
+DELIMITER ;
+
+
+DELIMITER $$
+CREATE PROCEDURE register_student(
+    IN p_username VARCHAR(50),
+    IN p_email VARCHAR(100),
+    IN p_password VARCHAR(100),
+    IN p_course_id INT,
+    IN p_yearLevel INT,
+    IN p_created_by INT
+)
+BEGIN
+    DECLARE email_count INT;
+    DECLARE user_count INT;
+
+    SELECT COUNT(*) INTO email_count
+    FROM Student
+    WHERE email = p_email;
+
+    SELECT COUNT(*) INTO user_count
+    FROM Student
+    WHERE username = p_username;
+
+    IF email_count > 0 THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Email already exists';
+    ELSEIF user_count > 0 THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Username already exists';
+    ELSE
+        INSERT INTO Student(username, email, password, course_id, yearLevel, created_by)
+        VALUES(p_username, p_email, SHA2(p_password, 256), p_course_id, p_yearLevel, p_created_by);
+    END IF;
+END$$
+
 DELIMITER ;
 
 
