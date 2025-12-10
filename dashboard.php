@@ -92,5 +92,7 @@
 
 <script src="js/dashboard_controller.js"></script>
 <script src="js/count_controller.js"></script>
+<script src="js/student_list_controller.js"></script>
+
 </body>
 </html>

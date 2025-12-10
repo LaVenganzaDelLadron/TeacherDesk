@@ -1,57 +1,38 @@
 
-    document.addEventListener("DOMContentLoaded", () => {
-        const studentGrid = document.getElementById("studentGrid");
-        const searchInput = document.getElementById("searchInput");
-        const searchBtn = document.getElementById("searchBtn");
+async function loadStudents() {
+    const studentGrid = document.getElementById("studentGrid");
+    const searchInput = document.getElementById("searchInput");
+    const searchBtn = document.getElementById("searchBtn");
 
-        function loadStudents(query = "") {
-            fetch("backend/student_list_controller.php")
-                .then(res => res.json())
-                .then(data => {
-                    if(query){
-                        data = data.filter(s => s.name.toLowerCase().includes(query.toLowerCase()));
-                    }
-
-                    studentGrid.innerHTML = "";
-                    if(data.length === 0){
-                        studentGrid.innerHTML = "<p>No students found</p>";
-                        return;
-                    }
-
-                    data.forEach(student => {
-                        const card = document.createElement("div");
-                        card.className = "bg-white rounded-2xl shadow-lg p-4 relative flex flex-col justify-between";
-
-                        card.innerHTML = `
-                            <div class="mb-2">
-                                <h3 class="text-lg font-semibold">${student.name}</h3>
-                                <p class="text-gray-500 text-sm">${student.course}</p>
-                                <p class="text-gray-500 text-sm">Year ${student.year}</p>
-                            </div>
-                            <span class="absolute top-2 right-2 text-xs font-semibold px-2 py-1 rounded-full ${student.status === 'active' ? 'bg-green-500 text-white' : 'bg-gray-400 text-white'}">
-                                ${student.status.toUpperCase()}
-                            </span>
-                        `;
-
-                        studentGrid.appendChild(card);
-                    });
-                })
-                .catch(err => console.error(err));
+    async function fetchStudents(query = "") {
+        const res = await fetch('backend/student_list_controller.php?action=students');
+        let data = await res.json();
+        if (query) {
+            data = data.filter(student => student.first_name.toLowerCase().includes(query.toLowerCase()))
         }
-
-        // Initial load
-        loadStudents();
-
-        // Search
-        searchBtn.addEventListener("click", () => {
-            const query = searchInput.value.trim();
-            loadStudents(query);
+    
+        studentGrid.innerHTML = "";
+        if (data.length === 0) {
+            studentGrid.innerHTML = "<p class='p-4'>No students found.</p>";
+            return;
+        }
+        data.forEach(student => {
+            const studentCard = document.createElement("div");
+            studentCard.className = "bg-white p-4 rounded shadow";
+            studentCard.innerHTML = `
+                <h3 class="text-lg font-semibold">${student.name}</h3>
+                <p class="text-gray-600">Email: ${student.course}</p>
+                <p class="text-gray-600">Enrolled: ${student.year}</p>
+            `;
+            studentGrid.appendChild(studentCard);
         });
-
-        searchInput.addEventListener("keypress", e => {
-            if(e.key === "Enter") {
-                e.preventDefault();
-                searchBtn.click();
-            }
+    }
+    fetchStudents();
+        if(searchBtn){
+        searchBtn.addEventListener('click', ()=> fetchStudents(searchInput.value.trim()));
+        searchInput.addEventListener('keypress', e=>{
+            if(e.key==='Enter') fetchStudents(searchInput.value.trim());
         });
-    });
+    }
+
+}
