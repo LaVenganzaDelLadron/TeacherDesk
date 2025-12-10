@@ -10,6 +10,7 @@ async function loadPage(page) {
     }
 }
 
+
 window.addEventListener('DOMContentLoaded', () => {
     loadPage('home.php'); // Automatically load home.php
 });
@@ -35,3 +36,4 @@ document.querySelectorAll('#sidebar a[data-page]').forEach(link => {
 document.getElementById("menuBtn").onclick = () => {
     document.getElementById("sidebar").classList.toggle("hidden");
 };
+

@@ -90,7 +90,7 @@
 </div>
 
 
-<script src="js/dashboard_controller_js.js"></script>
-
+<script src="js/dashboard_controller.js"></script>
+<script src="js/count_controller.js"></script>
 </body>
 </html>

@@ -93,7 +93,7 @@
     </div>
 
     <script src="js/app.js"></script>
-    <script src="js/auth_controller_js.js"></script>
+    <script src="js/auth_controller.js"></script>
 
   </body>
 </html>

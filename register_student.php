@@ -81,6 +81,6 @@
 
 
   </form>
-  <script src="js/student_controller_js.js"></script>
+  <script src="js/student_controller.js"></script>
 </body>
 </html>

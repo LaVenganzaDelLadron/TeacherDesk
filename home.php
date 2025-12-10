@@ -7,13 +7,13 @@
     <!-- Students Card -->
     <div class="bg-white shadow-lg rounded-xl border border-gray-200 flex flex-col items-center justify-center text-center">
         <h2 class="text-xl font-bold text-gray-800 mb-2">Students</h2>
-        <p class="text-gray-600 text-2xl font-semibold">48</p>
+        <p id="totalStudents" class="text-gray-600 text-2xl font-semibold">0</p>
     </div>
 
     <!-- Online Card -->
     <div class="bg-white shadow-lg rounded-xl border border-gray-200 flex flex-col items-center justify-center text-center">
         <h2 class="text-xl font-bold text-gray-800 mb-2">Online</h2>
-        <p class="text-gray-600 text-2xl font-semibold">23</p>
+        <p id="onlineStudents" class="text-gray-600 text-2xl font-semibold">0</p>
     </div>
 
     <!-- Profile Card (2x2) on Right -->
@@ -27,15 +27,15 @@
     <!-- Cheating Card -->
     <div class="bg-white shadow-lg rounded-xl border border-gray-200 flex flex-col items-center justify-center text-center">
         <h2 class="text-xl font-bold text-gray-800 mb-2">Cheating</h2>
-        <p class="text-gray-600 text-2xl font-semibold">4</p>
+        <p id="cheatingCount" class="text-gray-600 text-2xl font-semibold">0</p>
     </div>
 
     <!-- Temporary Card -->
     <div class="bg-white shadow-lg rounded-xl border border-gray-200 flex flex-col items-center justify-center text-center">
         <h2 class="text-xl font-bold text-gray-800 mb-2">Temporary</h2>
-        <p class="text-gray-600 text-2xl font-semibold">9</p>
+        <p id="temporaryCount" class="text-gray-600 text-2xl font-semibold">0</p>
     </div>
-
+    
   </div>
 
 <!-- Exam Coordination & Announcement Container -->
@@ -109,9 +109,5 @@
   <div class="p-5 border-t border-gray-200 text-gray-600">
       Suspect Cheating: <span class="font-semibold">2</span>
   </div>
-</div>
-
-
-</div>
-
-</div>
+  </div>
+  

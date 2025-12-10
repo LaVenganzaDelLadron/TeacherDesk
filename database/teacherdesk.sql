@@ -197,3 +197,17 @@ END$$
 DELIMITER ;
 
 
+DELIMITER $$
+
+CREATE PROCEDURE login_student(
+    IN p_email VARCHAR(50),
+    IN p_password VARCHAR(100)
+)
+BEGIN
+    SELECT admin_id, username, password
+    FROM Student 
+    WHERE email = p_email 
+      AND password = SHA2(p_password,256);
+END $$
+
+DELIMITER ;
