@@ -43,4 +43,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/announcement', function () {
         return Inertia::render('dashboard/Announcement/Announcement');
     })->name('announcement');
+    
+    Route::get('/integrity', function () {
+        return Inertia::render('dashboard/Integrity/Integrity');
+    })->name('integrity');
 });
