@@ -16,11 +16,11 @@ return new class extends Migration {
             $table->text('requirement')->nullable();
             $table->unsignedInteger('target_course');
             $table->integer('target_yearLevel');
-            $table->unsignedInteger('created_by');
+            $table->unsignedBigInteger('created_by');
             $table->timestamp('created_at')->useCurrent();
 
             $table->foreign('target_course')->references('course_id')->on('courses');
-            $table->foreign('created_by')->references('admin_id')->on('admins');
+            $table->foreign('created_by')->references('id')->on('users');
         });
     }
 
